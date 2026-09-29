@@ -1,0 +1,6 @@
+S -> A d | C e | f
+A -> B g | A h | c d i | c d j | c d k | c d m | c d n | o
+B -> A l | B p | q
+C -> D r | s
+D -> E t | u
+E -> v | w
