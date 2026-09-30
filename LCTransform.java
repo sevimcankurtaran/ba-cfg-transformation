@@ -69,8 +69,7 @@ public class LCTransform {
     // ─────────────────────────────────────────────────────────────────────────
 
     /**
-     * Retained Nichtterminale: Startsymbol + alle NTs, die in nicht-linksster
-     * Position einer Produktion vorkommen (Definition 4.7, Abschnitt 4.4).
+     * Retained Nichtterminale: Startsymbol plus alle NTs, die (mindestens einmal) an nicht-linkester Position vorkommen (Definition 4.7, Abschnitt 4.4).
      */
     private static Set<String> berechneRetainedNTs(Grammatik g, String startsymbol) {
         Set<String> retained = new HashSet<>();

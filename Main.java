@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Auswertungslauf für die Algorithmenkombinationen aus Moore, Tabellen 3 und 4.
+ * Auswertungsbogen für die Algorithmenkombinationen aus Moore, Tabellen 3 und 4.
  *
  * Für jede Eingabegrammatik wird eine Tabelle mit einer Zeile je Kombination
  * ausgegeben: Grammatikgröße, Größenänderung, LL(1)-Eigenschaft und das
@@ -15,14 +15,14 @@ public class Main {
     /** Obere Schranke für Wortlänge in der Äquivalenzprüfung. */
     private static final int MAX_WORTLAENGE = 8;
 
-    /** Spaltenformat für Kopf- und Datenzeilen der Ergebnistabelle. */
+    /** Spaltenformat die Ergebnistabelle. */
     private static final String ZEILENFORMAT = "%-20s %7s %7s %8s %10s%n";
 
     /** Spaltenformat für die Zusatztabelle (PA ε vs. Moore). */
     private static final String GROESSENFORMAT = "%-20s %12s %14s%n";
 
     public static void main(String[] args) throws Exception {
-        // Über die Kommandozeile übergebene Dateien haben Vorrang.
+
         String[] dateien = args.length > 0
                 ? args
                 : new String[]{
@@ -67,8 +67,8 @@ public class Main {
         System.out.println("=".repeat(64));
         druckeTabelle(kombinationen, ausgangsgrammatik, startsymbol, ausgangsgroesse);
 
-        // Zusätzlicher Vergleich der Grammatikgrößen: mit ε-Version (Definition 3.8) gegen Moores
-        // ε-freie Variante, jeweils
+        // Zusätzlicher Vergleich der Grammatikgrößen: ε-Version (Definition 3.8) gegen Moores
+        // ε-freie Variante, jeweils direkt, nach LF und nach LF+NLRG.
         Map<String, Grammatik> epsilon = new LinkedHashMap<>();
         epsilon.put("PA",             PaullAlgorithm.removeLeftRecursion(ausgangsgrammatik));
         epsilon.put("LF + PA",        PaullAlgorithm.removeLeftRecursion(lf));

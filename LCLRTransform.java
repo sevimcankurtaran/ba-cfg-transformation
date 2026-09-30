@@ -1,10 +1,8 @@
 import java.util.*;
 
 /**
- * Left-Corner Transform für linksrekursive Nichtterminale (LCLR), Definition 4.11, Implementierung 5.4.5.
- * Wie LCTransform, aber nur retained UND linksrekursive NTs werden
- * über die Schemata 1-3 transformiert; alle anderen laufen über Schema 4 unverändert durch
- * und gelten für die Linksecken-Kette als Blatt (siehe berechneProperLC).
+ * Left-Corner Transform für linksrekursive Nichtterminale (LCLR), Definition 4.11, Abschnitt 4.5 / Implementierung 5.4.5.
+ * Wie LCTransform, außer dass nur retained UND linksrekursive NT transformiert werden
  *
  * Vier Schemata:
  *   Schema 1: X (Terminal oder nicht-LR-NT) echte Linksecke von retained LR-NT A, dann --> X A_LC_X
@@ -81,8 +79,7 @@ public class LCLRTransform {
     // ─────────────────────────────────────────────────────────────────────────
 
     /**
-     * Retained Nichtterminale: Startsymbol + alle NTs, die in nicht-linksster Position
-     * einer Produktion vorkommen (Definition 4.7, Abschnitt 4.4).
+     * Retained Nichtterminale: Startsymbol plus alle NTs, die (mindestens einmal) an nicht-linkester Position vorkommen (Definition 4.7, Abschnitt 4.4).
      */
     private static Set<String> berechneRetainedNTs(Grammatik g, String startsymbol) {
         Set<String> retained = new HashSet<>();
@@ -100,10 +97,7 @@ public class LCLRTransform {
 
     /**
      * Berechnet die echten Linksecken (proper left corners) für jedes retained LR-NT.
-     *
-     * Besonderheit gegenüber der normalen Linksecken-Relation:
-     * Die transitive Kette wird nur durch LR-Nichtterminale verfolgt.
-     * Terminale und nicht-LR-NTs sind Blätter (werden nicht weiter expandiert).
+     * Anders als bei LCTransform werden nur LR-Nichtterminale weiterverfolgt.
      */
     private static Map<String, Set<String>> berechneProperLC(
             Grammatik g, Set<String> lrNTs, Set<String> retainedLR) {

@@ -12,7 +12,6 @@ public class LeftFactoring {
         boolean geaendert = true;
 
         // Iterativ anwenden, bis keine Änderung mehr möglich.
-        // (Paper: "apply repeatedly, until it is no longer applicable")
         while (geaendert) {
             geaendert = false;
 
